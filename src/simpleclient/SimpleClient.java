@@ -18,14 +18,18 @@ public class SimpleClient {
 
         Scanner input = new Scanner(System.in);
         
-        while(!input.nextLine().equals("bye")){
+        do{
             String msg = new String(dis.readUTF());
-            System.out.println(msg);
-            dos.writeUTF(input.nextLine());
-        }
+            System.out.println("Client: " + msg);
+            String str =input.nextLine();
+            dos.writeUTF(str);
+            
+            if(str.equalsIgnoreCase("bye"))
+                break;
+        }while(true);
         
-        dis.close();
         dos.close();
+        dis.close();
         sock.close();
     }
     
